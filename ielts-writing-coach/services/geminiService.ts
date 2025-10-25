@@ -43,15 +43,6 @@ const practiceEvaluationSchema = {
 
 
 export async function evaluateIntroduction(topic: string, answer: string): Promise<Evaluation> {
-  if (!process.env.API_KEY) {
-    console.warn("API_KEY environment variable not set. Using mocked data for main evaluation.");
-    return new Promise(resolve => setTimeout(() => resolve({
-      bandScore: 6.5,
-      strengths: ["Good paraphrasing of the topic.", "Clearly states the essay's intention."],
-      improvements: ["Use more varied vocabulary.", "The thesis statement could be more specific."],
-      highBandAnswer: "It is often argued that compelling high school students to participate in unpaid work for the community should be a mandatory component of their curriculum. This essay wholeheartedly agrees with this proposition because such initiatives foster a sense of civic duty and equip adolescents with invaluable practical skills."
-    }), 1500));
-  }
 
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
@@ -80,13 +71,6 @@ Student's Introduction: "${answer}"
 }
 
 export async function evaluatePracticeAttempt(modelAnswer: string, userAnswer: string): Promise<PracticeEvaluation> {
-  if (!process.env.API_KEY) {
-    console.warn("API_KEY environment variable not set. Using mocked data for practice evaluation.");
-     return new Promise(resolve => setTimeout(() => resolve({
-      accuracy: 95,
-      feedback: "Great job! Just a small typo on the word 'curiculum'. It should be 'curriculum'."
-    }), 1000));
-  }
   
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   const response = await ai.models.generateContent({
