@@ -72,7 +72,7 @@ Student's Introduction: "${answer}"
 
 export async function evaluatePracticeAttempt(modelAnswer: string, userAnswer: string): Promise<PracticeEvaluation> {
   
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({apiKey: process.env.VITE_API_KEY});
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-flash',
     contents: `A user is practicing typing a model answer. Compare the user's attempt to the original model answer. Calculate an accuracy percentage and provide brief, encouraging feedback, noting any specific typos or differences.
