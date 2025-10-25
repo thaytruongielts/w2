@@ -44,7 +44,7 @@ const practiceEvaluationSchema = {
 
 export async function evaluateIntroduction(topic: string, answer: string): Promise<Evaluation> {
 
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+ const ai = new GoogleGenAI({apiKey: process.env.VITE_API_KEY});
 
   const response = await ai.models.generateContent({
     model: "gemini-2.5-pro",
